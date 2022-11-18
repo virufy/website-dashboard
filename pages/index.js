@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import translations from "../i18n";
 import { getCountryCode } from "../utils/countries";
 
@@ -29,6 +29,7 @@ const Dashboard = ({ report, date }) => {
         date={date}
         locale={i18n}
         changeLocale={handleLanguageChange}
+        changeCountry={handleCountry}
       />
       <Map handleClick={handleCountry} report={report} locale={i18n} />
     </main>
@@ -97,22 +98,25 @@ export const getStaticProps = async () => {
         total: 1,
         positive:
           cough.pcrTestResult === "Positive" ||
-          cough.antibodyTestResult === "Positive"
+            cough.antibodyTestResult === "Positive"
             ? 1
             : 0,
         negative:
           cough.pcrTestResult === "Negative" ||
-          cough.antibodyTestResult === "Negative"
+            cough.antibodyTestResult === "Negative"
             ? 1
             : 0,
         unknown:
           cough.pcrTestResult === "Unknown" ||
-          cough.antibodyTestResult === "Unknown"
+            cough.antibodyTestResult === "Unknown"
             ? 1
             : 0,
       });
     }
   });
+
+  report.countries.sort((a, b) => a.country.toLowerCase().localeCompare(b.country.toLowerCase()));
+
 
   return {
     props: {

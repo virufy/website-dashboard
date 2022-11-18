@@ -14,7 +14,7 @@ const Map = ({ handleClick, report, locale }) => {
   };
 
   return (
-    <section className="w-full flex items-center justify-center min-h-screen">
+    <section className="hidden lg:flex w-full items-center justify-center min-h-screen">
       <svg className="block" width={1010} height={670}>
         {map.map((country) => (
           <path
