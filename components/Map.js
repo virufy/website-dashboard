@@ -2,19 +2,28 @@ import ReactTooltip from "react-tooltip";
 import map from "../utils/map";
 
 const Map = ({ handleClick, report, locale }) => {
-  const matchColor = (total) => {
-    if (total > 1000) return "#800026";
-    if (total > 500) return "#BD0026";
-    if (total > 200) return "#E31A1C";
-    if (total > 100) return "#FC4E2A";
-    if (total > 50) return "#FD8D3C";
-    if (total > 20) return "#FEB24C";
-    if (total > 10) return "#FED976";
-    return "#FFEDA0";
+  const colors = {
+    1000: "#800026",
+    500: "#BD0026",
+    200: "#E31A1C",
+    100: "#FC4E2A",
+    50: "#FD8D3C",
+    20: "#FEB24C",
+    10: "#FED976",
+    0: "#FFEDA0",
   };
 
+  const matchColor = (total) =>
+    colors[
+      Math.max(...Object.keys(colors).filter((nb) => nb <= Number(total)))
+    ];
+
   return (
-    <section className="hidden lg:flex w-full items-center justify-center min-h-screen">
+    <section
+      width={1010}
+      height={670}
+      className="hidden lg:flex w-full items-center justify-center min-h-screen relative"
+    >
       <svg className="block" width={1010} height={670}>
         {map.map((country) => (
           <path
@@ -35,6 +44,20 @@ const Map = ({ handleClick, report, locale }) => {
           />
         ))}
       </svg>
+      <div className="absolute bottom-0 left-0 m-4">
+        <div className="flex flex-col items-start">
+          {Object.keys(colors).map((i) => (
+            <div className="flex flex-row items-center" key={i}>
+              <div
+                className="w-4 h-4 rounded-full"
+                style={{ backgroundColor: colors[i] }}
+              />
+              <div className="ml-2 text-sm">{i}+</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
       <ReactTooltip />
     </section>
   );
