@@ -3,14 +3,14 @@ import map from "../utils/map";
 
 const Map = ({ handleClick, report, locale }) => {
   const colors = {
-    1000: "#800026",
-    500: "#BD0026",
-    200: "#E31A1C",
-    100: "#FC4E2A",
-    50: "#FD8D3C",
-    20: "#FEB24C",
-    10: "#FED976",
-    0: "#FFEDA0",
+    1000: "#062C66",
+    500: "#154794",
+    200: "#2B69C7",
+    100: "#3074DC",
+    50: "#4B92FC",
+    20: "#9BC2FD",
+    10: "#C3DBFE",
+    0: "#E1EDFE",
   };
 
   const matchColor = (total) =>
@@ -22,7 +22,7 @@ const Map = ({ handleClick, report, locale }) => {
     <section
       width={1010}
       height={670}
-      className="hidden lg:flex w-full items-center justify-center min-h-screen relative"
+      className="hidden lg:flex w-full items-center justify-center min-h-screen relative mx-4"
     >
       <svg className="block" width={1010} height={670}>
         {map.map((country) => (
