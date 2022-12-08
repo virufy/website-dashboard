@@ -13,39 +13,47 @@ const globalsOptions = [
 ];
 
 const en = {
-  worldwide: "Worldwide",
-  total: "Donated coughs",
+  worldwide: "Global",
+  total: "Shared coughs",
   positive: "Positive tests",
   negative: "Negative tests",
   unknown: "Unknown tests",
   updated_at: "Updated at",
+  select_country: "Click in a country on the map to view specific data",
+  go_back: "View global data",
 };
 
 const es = {
   worldwide: "Mundial",
-  total: "Toses donadas",
+  total: "Toses compartidas",
   positive: "Pruebas positivas",
   negative: "Pruebas negativas",
   unknown: "Pruebas desconocidas",
   updated_at: "Actualizado en",
+  select_country: "Haz clic en un país del mapa para ver datos específicos",
+  go_back: "Ver datos globales",
 };
 
 const pt = {
   worldwide: "Mundial",
-  total: "Tosse doada",
+  total: "Tosse compartilhada",
   positive: "Testes positivos",
   negative: "Testes negativos",
   unknown: "Testes desconhecidos",
   updated_at: "Atualizado em",
+  select_country: "Clique em um país no mapa para visualizar dados específicos",
+  go_back: "Ver dados globais",
 };
 
 const jp = {
   worldwide: "世界",
-  total: "寄付された咳",
+  total: "咳き込み",
   positive: "陽性のテスト",
   negative: "ネガティブなテスト",
   unknown: "不明なテスト",
   updated_at: "更新日",
+  select_country: "地図上の国をクリックすると特定のデータが表示されます",
+  go_back: "グローバルなデータを表示",
 };
 
 const i18n = {

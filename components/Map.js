@@ -19,11 +19,7 @@ const Map = ({ handleClick, report, locale }) => {
     ];
 
   return (
-    <section
-      width={1010}
-      height={670}
-      className="hidden lg:flex w-full items-center justify-center min-h-screen relative mx-4"
-    >
+    <section className="hidden lg:flex w-full items-center justify-center min-h-screen relative mx-4">
       <svg className="block" width={1010} height={670}>
         {map.map((country) => (
           <path
@@ -35,6 +31,7 @@ const Map = ({ handleClick, report, locale }) => {
             key={country?.code}
             title={country?.country}
             onClick={() => handleClick(country?.code)}
+            id={country?.code}
             fill={matchColor(
               report?.countries?.find((c) => c?.code === country?.code)
                 ?.total || 0

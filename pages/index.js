@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import translations from "../i18n";
 import { getCountryCode } from "../utils/countries";
 
 import Sidebar from "../components/Sidebar";
 import Map from "../components/Map";
+import mapData from "../utils/map";
 
 const Dashboard = ({ report, date }) => {
   const [i18n, setI18n] = useState(translations.en);
@@ -16,9 +17,24 @@ const Dashboard = ({ report, date }) => {
   const [country, setCountry] = useState(false);
 
   const handleCountry = (country) => {
+    if (!country || country == "all") {
+      setCountry(false);
+      return;
+    }
+
     const countryIndex = report.countries.findIndex((c) => c.code === country);
 
-    setCountry(report.countries[countryIndex]);
+    const data = report.countries[countryIndex];
+
+    const noData = {
+      country: mapData[mapData.findIndex((i) => i?.code == country)]?.country,
+      total: 0,
+      positive: 0,
+      negative: 0,
+      unknown: 0,
+    };
+
+    setCountry(data ? data : noData);
   };
 
   return (
@@ -98,25 +114,31 @@ export const getStaticProps = async () => {
         total: 1,
         positive:
           cough.pcrTestResult === "Positive" ||
-            cough.antibodyTestResult === "Positive"
+          cough.antibodyTestResult === "Positive"
             ? 1
             : 0,
         negative:
           cough.pcrTestResult === "Negative" ||
-            cough.antibodyTestResult === "Negative"
+          cough.antibodyTestResult === "Negative"
             ? 1
             : 0,
         unknown:
           cough.pcrTestResult === "Unknown" ||
-            cough.antibodyTestResult === "Unknown"
+          cough.antibodyTestResult === "Unknown"
             ? 1
             : 0,
       });
     }
   });
 
-  report.countries.sort((a, b) => a.country.toLowerCase().localeCompare(b.country.toLowerCase()));
+  report.countries.sort((a, b) =>
+    a.country.toLowerCase().localeCompare(b.country.toLowerCase())
+  );
 
+  report.countries.unshift({
+    country: "Global",
+    code: "all",
+  });
 
   return {
     props: {
