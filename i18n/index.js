@@ -13,6 +13,7 @@ const globalsOptions = [
 ];
 
 const en = {
+  locale: "en",
   worldwide: "Global",
   total: "Shared coughs",
   positive: "Positive tests",
@@ -24,18 +25,20 @@ const en = {
 };
 
 const es = {
-  worldwide: "Mundial",
+  locale: "es",
+  worldwide: "Global",
   total: "Toses compartidas",
   positive: "Pruebas positivas",
   negative: "Pruebas negativas",
   unknown: "Pruebas desconocidas",
   updated_at: "Actualizado en",
-  select_country: "Haz clic en un país del mapa para ver datos específicos",
+  select_country: "Haz clic en el país para ver los datos específicos",
   go_back: "Ver datos globales",
 };
 
 const pt = {
-  worldwide: "Mundial",
+  locale: "pt",
+  worldwide: "Global",
   total: "Tosse compartilhada",
   positive: "Testes positivos",
   negative: "Testes negativos",
@@ -46,6 +49,7 @@ const pt = {
 };
 
 const jp = {
+  locale: "jp",
   worldwide: "世界",
   total: "咳き込み",
   positive: "陽性のテスト",
