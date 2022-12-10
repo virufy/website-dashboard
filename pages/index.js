@@ -5,9 +5,14 @@ import { getCountryCode } from "../utils/countries";
 import Sidebar from "../components/Sidebar";
 import Map from "../components/Map";
 import mapData from "../utils/map";
+import { useRouter } from "next/router";
 
 const Dashboard = ({ report, date }) => {
-  const [i18n, setI18n] = useState(translations.en);
+  const {
+    query: { lang },
+  } = useRouter();
+
+  const [i18n, setI18n] = useState(translations[lang] || translations.en);
 
   const handleLanguageChange = (e) => {
     const language = e.target.value;

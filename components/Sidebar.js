@@ -18,6 +18,7 @@ const Sidebar = ({
           <select
             onChange={changeLocale}
             className="bg-primary text-white-900 text-sm rounded-lg block p-2.5 max-w-lg cursor-pointer focus:ring-primary focus:border-primary text-right"
+            value={locale?.locale}
           >
             {globalsOptions.map((locale) => (
               <option key={locale.value} value={locale.value}>
@@ -62,18 +63,22 @@ const Sidebar = ({
         <Card
           title={locale?.total}
           content={country ? country?.total : report?.total}
+          no_data={locale.no_data}
         />
         <Card
           title={locale?.positive}
           content={country ? country?.positive : report?.positive}
+          no_data={locale.no_data}
         />
         <Card
           title={locale?.negative}
           content={country ? country?.negative : report?.negative}
+          no_data={locale.no_data}
         />
         <Card
           title={locale?.unknown}
           content={country ? country?.unknown : report?.unknown}
+          no_data={locale.no_data}
         />
       </section>
       <footer className="text-center">

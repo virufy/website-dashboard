@@ -18,16 +18,23 @@ const Map = ({ handleClick, report, locale }) => {
       Math.max(...Object.keys(colors).filter((nb) => nb <= Number(total)))
     ];
 
+  const getTooltipMessage = (country) => {
+    const totalCoughs = report?.countries?.find(
+      (c) => c?.code === country?.code
+    )?.total;
+
+    return `${country?.country} - ${
+      totalCoughs > 0 ? `${totalCoughs} ${locale.total}` : locale.no_data
+    }`;
+  };
+
   return (
     <section className="hidden lg:flex w-full items-center justify-center min-h-screen relative mx-4">
       <svg className="block" width={1010} height={670}>
         {map.map((country) => (
           <path
             d={country?.path}
-            data-tip={`${country?.country} - ${
-              report?.countries?.find((c) => c?.code === country?.code)
-                ?.total || 0
-            } ${locale?.total}`}
+            data-tip={getTooltipMessage(country)}
             key={country?.code}
             title={country?.country}
             onClick={() => handleClick(country?.code)}
