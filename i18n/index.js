@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+
 const globals = {
   en: "English",
   es: "Español",
@@ -22,7 +24,7 @@ const en = {
   updated_at: "Updated at",
   select_country: "Click in a country on the map to view specific data",
   go_back: "View global data",
-  no_data: "No data collected"
+  no_data: "No data collected",
 };
 
 const es = {
@@ -35,7 +37,7 @@ const es = {
   updated_at: "Actualizado en",
   select_country: "Haz clic en el país para ver los datos específicos",
   go_back: "Ver datos globales",
-  no_data: "No se han registrado datos"
+  no_data: "No se han registrado datos",
 };
 
 const pt = {
@@ -48,23 +50,24 @@ const pt = {
   updated_at: "Atualizado em",
   select_country: "Clique em um país no mapa para visualizar dados específicos",
   go_back: "Ver dados globais",
-  no_data: "Nenhum dado coletado"
+  no_data: "Nenhum dado coletado",
 };
 
 const jp = {
   locale: "jp",
   worldwide: "世界",
-  total: "咳き込み",
-  positive: "陽性のテスト",
-  negative: "ネガティブなテスト",
-  unknown: "不明なテスト",
+  total: "咳データ寄付数",
+  positive: "陽性サンプル数",
+  negative: "陰性サンプル数",
+  unknown: "未知サンプル数",
   updated_at: "更新日",
-  select_country: "地図上の国をクリックすると特定のデータが表示されます",
+  select_country:
+    "地図上の国をクリックすると国別の咳データ寄付数が表示されます",
   go_back: "グローバルなデータを表示",
-  no_data: "データ収集なし"
+  no_data: "収集されたデータはありません",
 };
 
-const i18n = {
+const translations = {
   globals,
   globalsOptions,
   en,
@@ -73,4 +76,12 @@ const i18n = {
   jp,
 };
 
-export default i18n;
+const useTranslation = () => {
+  const router = useRouter();
+
+  const { locale } = router;
+
+  return translations[locale];
+};
+
+export { useTranslation, translations };

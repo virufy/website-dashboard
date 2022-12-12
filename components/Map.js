@@ -1,7 +1,10 @@
 import ReactTooltip from "react-tooltip";
 import map from "../utils/map";
+import { useTranslation } from "../i18n";
 
-const Map = ({ handleClick, report, locale }) => {
+const Map = ({ handleClick, report }) => {
+  const locale = useTranslation();
+
   const colors = {
     1000: "#062C66",
     500: "#154794",

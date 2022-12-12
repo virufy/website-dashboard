@@ -1,15 +1,15 @@
-import i18n from "../i18n";
+import { translations, useTranslation } from "../i18n";
 import Card from "./Card";
 
 const Sidebar = ({
   report,
   country,
   date,
-  locale,
   changeLocale,
   changeCountry,
 }) => {
-  const { globalsOptions } = i18n;
+  const { globalsOptions } = translations;
+  const locale = useTranslation();
 
   return (
     <sidebar className="min-w-full w-screen lg:w-3/10 bg-primary h-screen display flex flex-col items-center justify-around p-4 text-white">

@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import translations from "../i18n";
+import { useState } from "react";
 import { getCountryCode } from "../utils/countries";
 
 import Sidebar from "../components/Sidebar";
@@ -8,17 +7,6 @@ import mapData from "../utils/map";
 import { useRouter } from "next/router";
 
 const Dashboard = ({ report, date }) => {
-  const {
-    query: { lang },
-  } = useRouter();
-
-  const [i18n, setI18n] = useState(translations[lang] || translations.en);
-
-  const handleLanguageChange = (e) => {
-    const language = e.target.value;
-    setI18n(translations[language]);
-  };
-
   const [country, setCountry] = useState(false);
 
   const handleCountry = (country) => {
@@ -42,17 +30,22 @@ const Dashboard = ({ report, date }) => {
     setCountry(data ? data : noData);
   };
 
+  const router = useRouter();
+  const { pathname, asPath, query } = router;
+
+  const handleLanguageChange = (e) =>
+    router.push({ pathname, query }, asPath, { locale: e.target.value });
+
   return (
     <main className="flex justify-between min-w-">
       <Sidebar
         report={report}
         country={country}
         date={date}
-        locale={i18n}
         changeLocale={handleLanguageChange}
         changeCountry={handleCountry}
       />
-      <Map handleClick={handleCountry} report={report} locale={i18n} />
+      <Map handleClick={handleCountry} report={report} />
     </main>
   );
 };
